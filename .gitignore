@@ -1,3 +1,26 @@
+output.txt
 node_modules
+dist
+.mastra
+src/mastra/public/
+.env.development
 .env
-.yarn/
+.env.local
+*.db
+*.db-*
+.netlify
+.vercel
+*.duckdb
+*.duckdb.wal
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Eval runs (yarn eval) use this folder as the agent workspace
+/workspace/

@@ -1,0 +1,4 @@
+# Ollama defaults to a 4096-token context, which is smaller than this agent's prompt and tool list.
+# Create the model with: ollama create qwen3-16k:8b -f Modelfile
+FROM qwen3:8b
+PARAMETER num_ctx 16384

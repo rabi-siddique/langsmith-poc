@@ -1,0 +1,41 @@
+name: Evals
+
+# Manual only: start a run from the Actions tab. Nothing starts it automatically,
+# because every run spends free-tier model quota.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer run for the same branch cancels the older one, to save model quota.
+concurrency:
+  group: evals-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # Makes the Yarn version from package.json's packageManager field available.
+      - run: corepack enable
+
+      - run: yarn install --immutable
+
+      - run: yarn tsc --noEmit
+
+      # There is no .env file here, so the keys come from the repository's secrets.
+      # The judge runs on Cloudflare, whichever model the agent uses.
+      - run: yarn eval
+        env:
+          AGENT_MODEL: openrouter
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

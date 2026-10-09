@@ -1,23 +1,42 @@
 {
-  "name": "langsmith-poc",
+  "name": "agent-with-mastra",
   "version": "1.0.0",
-  "description": "LangSmith eval POC: does a model pick the right YMax MCP tool?",
+  "description": "A general-purpose Mastra agent with a local workspace, shell tools, memory, task tracking, web access, and recurring schedules.",
+  "main": "index.js",
+  "private": true,
   "scripts": {
-    "upload": "node --env-file-if-exists=.env src/upload-dataset.ts",
-    "eval": "node --env-file-if-exists=.env src/run-eval.ts",
-    "typecheck": "tsc"
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start",
+    "eval": "vitest run",
+    "eval:tools": "tsx evals/langsmith-tool-choice.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "dependencies": {
-    "langsmith": "0.10.5",
-    "openai": "7.23.0"
+    "@mastra/core": "1.75.0",
+    "@mastra/duckdb": "1.13.0",
+    "@mastra/evals": "1.10.5",
+    "@mastra/langfuse": "^1.5.13",
+    "@mastra/langsmith": "1.3.24",
+    "@mastra/libsql": "1.25.1",
+    "@mastra/mcp": "2.2.0",
+    "@mastra/memory": "1.36.0",
+    "@mastra/observability": "1.18.4",
+    "langsmith": "0.8.12",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "24.13.6",
-    "typescript": "7.0.2"
+    "@types/node": "latest",
+    "mastra": "1.33.0",
+    "tsx": "4.19.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.11"
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "yarn@4.18.1"
 }
