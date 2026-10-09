@@ -1,0 +1,23 @@
+{
+  "name": "langsmith-poc",
+  "version": "1.0.0",
+  "description": "LangSmith eval POC: does a model pick the right YMax MCP tool?",
+  "scripts": {
+    "upload": "node --env-file-if-exists=.env src/upload-dataset.ts",
+    "eval": "node --env-file-if-exists=.env src/run-eval.ts",
+    "typecheck": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "langsmith": "0.10.5",
+    "openai": "7.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "typescript": "7.0.2"
+  },
+  "packageManager": "yarn@4.18.0"
+}

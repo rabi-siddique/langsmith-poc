@@ -1,0 +1,3 @@
+{"inputs": {"request": "Rebalance my portfolio: move 30% into Aave on Arbitrum"}, "outputs": {"expected_tool": "get_portfolio_status"}}
+{"inputs": {"request": "I don't have a portfolio yet. Set one up with 60% Aave on Arbitrum and 40% USDN"}, "outputs": {"expected_tool": ["propose_create", "get_portfolio_status"]}}
+{"inputs": {"request": "What is Aave, in one sentence?"}, "outputs": {"expected_tool": "none"}}
